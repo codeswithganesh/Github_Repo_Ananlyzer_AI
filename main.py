@@ -10,14 +10,15 @@ import json
 import asyncio
 from mangum import Mangum
 
+# Initialize FastAPI app
 app = FastAPI()
 
 # Mount static files and templates
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
-# Replace with your Gemini API key
-GEMINI_API_KEY = "AIzaSyBIt3R4o4PfgMM398jhgGQRzh742yAArcQ"  # Add your Gemini API key here
+# Use environment variable for Gemini API key
+GEMINI_API_KEY = "AIzaSyBIt3R4o4PfgMM398jhgGQRzh742yAArcQ"
 genai.configure(api_key=GEMINI_API_KEY)
 
 # In-memory storage
@@ -58,15 +59,12 @@ def explain_file(file_name: str, content: str) -> str:
         return f"Gemini API Error: {str(e)}"
 
 async def stream_file_explanations(files: Dict[str, str]) -> AsyncGenerator[str, None]:
-    """Stream explanations for each file one-by-one."""
     explanations = {}
     for file_name, content in files.items():
         explanation = explain_file(file_name, content)
         explanations[file_name] = explanation
-        # Yield each file's explanation as a JSON line
         yield json.dumps({"status": "success", "file": file_name, "explanation": explanation}) + "\n"
-        await asyncio.sleep(0.1)  # Small delay to simulate streaming and avoid overwhelming the client
-    # Store all explanations in repo_data after streaming
+        await asyncio.sleep(0.1)
     repo_data["explanations"] = explanations
 
 def answer_question(question: str) -> str:
@@ -105,4 +103,5 @@ async def ask(question: str = Form(...)):
     except Exception as e:
         return {"status": "error", "message": str(e)}
 
-handler = Mangum(app)
+# Vercel handler
+handler = Mangum(app, lifespan="off")  # Explicitly disable lifespan events
