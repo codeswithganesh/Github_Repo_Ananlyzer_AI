@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Repository Analyzer</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>GitHub Repository Analyzer</h1>
+        <p>Enter a GitHub repository URL to analyze its files and ask questions about them.</p>
+
+        <!-- URL Input Form -->
+        <form id="analyze-form" class="input-form">
+            <input type="text" id="github-url" name="github_url" placeholder="e.g., https://github.com/username/repo" required>
+            <button type="submit">Analyze</button>
+        </form>
+
+        <!-- Loader -->
+        <div id="loader" class="loader hidden">
+            <div class="spinner"></div>
+            <span>Analyzing repository...</span>
+        </div>
+
+        <!-- Results Section -->
+        <div id="results" class="results hidden">
+            <h2>Analysis Results</h2>
+            <div id="explanations"></div>
+        </div>
+
+        <!-- Q&A Section -->
+        <div id="qa-section" class="qa-section hidden">
+            <h2>Ask a Question</h2>
+            <form id="qa-form">
+                <input type="text" id="question" name="question" placeholder="e.g., What does main.py do?" required>
+                <button type="submit">Ask</button>
+            </form>
+            <div id="answer"></div>
+        </div>
+    </div>
+    <script src="/static/script.js"></script>
+</body>
+</html>

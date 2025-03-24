@@ -1,0 +1,112 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #1a73e8;
+    text-align: center;
+}
+
+p {
+    text-align: center;
+    color: #666;
+}
+
+.input-form {
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+button {
+    padding: 12px 24px;
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #1557b0;
+}
+
+.results, .qa-section {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #fafafa;
+    border-radius: 8px;
+    border: 1px solid #eee;
+}
+
+.hidden {
+    display: none;
+}
+
+#explanations, #answer {
+    margin-top: 15px;
+    white-space: pre-wrap;
+    line-height: 1.5;
+}
+
+#explanations strong {
+    color: #1a73e8;
+}
+
+.error {
+    color: #d93025;
+    font-weight: bold;
+}
+
+h2 {
+    margin-top: 0;
+    color: #444;
+}
+
+/* Loader Styles */
+.loader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px;
+    background-color: #f0f8ff;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 3px solid #1a73e8;
+    border-top: 3px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
